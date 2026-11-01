@@ -1,70 +1,71 @@
-# mahala-workshop-playwright — upute za Claude
+# mahala-workshop-playwright — instructions for Claude
 
-Playwright + TypeScript testovi za sajt Mahala Workshop (https://mahalaworkshop.com).
-Svrha: **Senad uči Playwright kroz lekcije**; usput nastaje portfolio projekat i stvarna
-regresija za sajt. Javni repo na GitHubu: u kodu nema lozinki, internih podataka ni
-produkcijskih tajni.
+Playwright + TypeScript tests for the Mahala Workshop site (https://mahalaworkshop.com).
+Purpose: **Senad learns Playwright through lessons**; along the way the repo becomes a portfolio
+project and a real regression suite for the site. Public GitHub repo: no passwords, internal
+data or production secrets anywhere.
 
-## Način rada: lekcije
+## Working mode: lessons
 
-- **Senad piše kod, Claude predaje.** Claude ne pravi gotove testove, page objekte ni
-  konfiguraciju unaprijed. Svaka lekcija: kratko objašnjenje → zadatak → Senad napiše i
-  pokrene → Claude pregleda i objasni šta bi bilo bolje i zašto.
-- Claude smije napisati kod samo kad Senad to izričito traži (npr. "pokaži rješenje").
-- Jedna lekcija = jedna tema. Ne preskakati unaprijed i ne dodavati stvari iz kasnijih lekcija.
-- **Poređenje sa VAF-om** u svakoj lekciji gdje ima smisla. VAF je Senadov framework:
-  `C:\Users\senad.kulo\source\repos\VisionAutomationFramework` (fluent API nad Selenium
-  WebDriverom, .NET; page objekti kao ugniježđene klase `IPageContext` / `ISectionContext` /
-  `IElementContext` s `By` lokatorima; `Testing.On<Chrome>().LetsNavigateTo(...).Should()...`;
-  shared steps u `PracticeSteps`; testovi u NUnitu). Primjeri: `src/VisionAutomationFramework.PracticeTests`.
-- Plan lekcija i stanje: `docs/lekcije.md` (na bosanskom). Na kraju lekcije ažurirati stanje.
-- Nacrt koji je Claude ranije napravio unaprijed (config, page objekti, testovi) sklonjen je u
-  `C:\Users\senad.kulo\Source\Repos\_drafts\mahala-workshop-playwright-v0`. Nije dio repoa;
-  služi samo Claudeu kao podsjetnik šta je bitno pokriti.
+- **Senad writes the code, Claude teaches.** Claude does not write tests, page objects or
+  configuration ahead of time. Each lesson: short explanation → task → Senad writes and runs
+  it → Claude reviews and explains what could be better and why.
+- Claude writes code only when Senad explicitly asks (e.g. "show me the solution").
+- One lesson = one topic. Do not skip ahead or add things from later lessons.
+- **Compare with VAF** in every lesson where it makes sense. VAF is Senad's own framework:
+  `C:\Users\senad.kulo\source\repos\VisionAutomationFramework` (fluent API over Selenium
+  WebDriver, .NET; page objects as nested `IPageContext` / `ISectionContext` /
+  `IElementContext` classes with `By` locators; `Testing.On<Chrome>().LetsNavigateTo(...).Should()...`;
+  shared steps in `PracticeSteps`; NUnit tests). Examples: `src/VisionAutomationFramework.PracticeTests`.
+- Lesson plan and progress: `docs/lessons.md`. Update the progress section at the end of each lesson.
+- A draft Claude built ahead of time (config, page objects, tests) was moved out of the repo to
+  `C:\Users\senad.kulo\Source\Repos\_drafts\mahala-workshop-playwright-v0`. It is not part of
+  the repo; it only reminds Claude what is worth covering.
 
-## Kako radimo
+## How we work
 
-- **Komunikacija na bosanskom.** Kod, komentari, nazivi testova i commit poruke na engleskom.
-- **Commit i push radi vlasnik, ne Claude.** Kad je izmjena gotova, pošalji gotov blok:
+- **Talk to Senad in Bosnian.** Everything committed to the repo (code, comments, test names,
+  commit messages, docs) is in English.
+- **Senad commits and pushes, not Claude.** When a change is done, give a ready block:
 
   ```powershell
   cd C:\Users\senad.kulo\Source\Repos\mahala-workshop-playwright
-  git add <konkretni fajlovi>
-  git commit -m "<poruka>"
+  git add <specific files>
+  git commit -m "<message>"
   git push
   ```
 
-- Node.js je u `C:\Program Files\nodejs`, ali nije uvijek u PATH-u Claude sesije. Ako `npm`
-  ne postoji: `$env:Path = "C:\Program Files\nodejs;" + $env:Path`.
+- Node.js is in `C:\Program Files\nodejs` but not always on the PATH of Claude's session. If
+  `npm` is missing: `$env:Path = "C:\Program Files\nodejs;" + $env:Path`.
 
-## Aplikacija koja se testira
+## Application under test
 
-Izvorni kod: `C:\Users\senad.kulo\Source\Repos\MahalaWorkshop` (ASP.NET Core Razor Pages,
-net9.0, EF Core, SQL Server). Glavna dokumentacija: `MahalaWorkshopFiles/PROJECT_CONTEXT.md`
-u tom repou. Pročitaj relevantan dio prije lekcije za neku stranicu.
+Source: `C:\Users\senad.kulo\Source\Repos\MahalaWorkshop` (ASP.NET Core Razor Pages, net9.0,
+EF Core, SQL Server). Main documentation: `MahalaWorkshopFiles/PROJECT_CONTEXT.md` in that
+repo. Read the relevant part before a lesson about a page.
 
-- **Lokalno:** `dotnet run --project MahalaWorkshop.Web` → http://localhost:5030
-  (baza `(localdb)\mssqllocaldb`, `MahalaWorkshop`; prazna baza dobije primjer proizvode).
-- **Jezici:** `bs` (podrazumijevani, BEZ prefiksa: `/Katalog`), `en`, `it`, `fr` (`/en/Katalog`).
-  `/bs/...` je namjerno 404. Jezik se određuje SAMO iz rute (ne kolačić, ne Accept-Language).
-  Izvor: `MahalaWorkshop.Web/Localization/SupportedCultures.cs`.
-- **Javne stranice:** `/`, `/Katalog` (`?category=slug&sortOrder=price_asc|price_desc|name_desc&p=N`),
+- **Local:** `dotnet run --project MahalaWorkshop.Web` → http://localhost:5030
+  (database `(localdb)\mssqllocaldb`, `MahalaWorkshop`; an empty database gets sample products).
+- **Languages:** `bs` (default, NO prefix: `/Katalog`), `en`, `it`, `fr` (`/en/Katalog`).
+  `/bs/...` is a deliberate 404. Language comes ONLY from the route (not a cookie, not
+  Accept-Language). Source: `MahalaWorkshop.Web/Localization/SupportedCultures.cs`.
+- **Public pages:** `/`, `/Katalog` (`?category=slug&sortOrder=price_asc|price_desc|name_desc&p=N`),
   `/ONama`, `/Restauracija`, `/Cnc`, `/Cnc/Upute`, `/product/{slug}`, `/sitemap.xml`, `/robots.txt`.
-- **Admin:** `/Admin/*` traži ulogu `Admin`; anonimni → 302 na `/Account/Login`. Nema javne
-  registracije (`/Identity/Account/Register` → 404).
-- **Upitni formular** (`/product/{slug}`, `#inquiryForm`): polja `#Inquiry_Name` (max 100),
+- **Admin:** `/Admin/*` requires the `Admin` role; anonymous → 302 to `/Account/Login`. No
+  public registration (`/Identity/Account/Register` → 404).
+- **Inquiry form** (`/product/{slug}`, `#inquiryForm`): fields `#Inquiry_Name` (max 100),
   `#Inquiry_Email` (200), `#Inquiry_Message` (2000), honeypot `#Inquiry_Website`
-  (popunjen → ništa se ne sprema, bot vidi normalan uspjeh). Rate limit: 5 POST-ova na
-  10 minuta po IP-u → 429 s porukom na jeziku stranice. Proizvod može imati obavezne
-  varijante (dropdown `variant_{groupId}`).
+  (filled → nothing is saved, the bot sees a normal success). Rate limit: 5 POSTs per
+  10 minutes per IP → 429 with a message in the page's language. A product can have required
+  variants (dropdown `variant_{groupId}`).
 
-## Pravila za produkciju (bitno)
+## Production rules (important)
 
-Produkcija je mali shared hosting i pravi sajt s pravim kupcima.
+Production is small shared hosting and a real site with real customers.
 
-- Testovi koji **pišu podatke, šalju email ili diraju statistiku** nikad ne idu na produkciju
-  (tag `@local-only` + `grepInvert` u configu, kad dođemo do te lekcije).
-  - Svaki GET na `/product/{slug}` povećava `ViewCount` → admin Analytics.
-  - Validan submit upita sprema upit i šalje email vlasniku i kupcu.
-- Bez testova opterećenja na produkciji. CI najviše 2 workera.
-- Admin login na produkciji se ne automatizuje.
+- Tests that **write data, send email or touch statistics** never run against production
+  (`@local-only` tag + `grepInvert` in the config, once we reach that lesson).
+  - Every GET of `/product/{slug}` increments `ViewCount` → admin Analytics.
+  - A valid inquiry submit saves the inquiry and emails the owner and the customer.
+- No load tests against production. CI uses at most 2 workers.
+- Admin login on production is never automated.

@@ -1,11 +1,7 @@
 {
   "name": "mahala-workshop-playwright",
   "version": "1.0.0",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs",
-    "test": "tests"
-  },
+  "private": true,
   "scripts": {},
   "repository": {
     "type": "git",
@@ -13,7 +9,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/SenadKulo/mahala-workshop-playwright/issues"
   },
@@ -27,5 +23,5 @@
     "playwright-core": "^1.64.1",
     "undici-types": "^8.9.0"
   },
-  "description": ""
+  "description": "Playwright tests for the Mahala Workshop website"
 }

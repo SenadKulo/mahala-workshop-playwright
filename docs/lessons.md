@@ -25,4 +25,8 @@ The "VAF" column says what is the same or different in VAF (Selenium, .NET).
 ## Progress
 
 - 2026-11-01: plan created; GitHub repo created (description, website, topics).
-  Next: **lesson 0** (`npm init playwright@latest`).
+- 2026-11-01: **lesson 0 done.** `npm init playwright@latest` (TypeScript, `tests`, no GitHub
+  Actions, browsers installed); example tests run on 3 projects (2 tests × 3 browsers = 6);
+  UI mode and HTML report; first own test `tests/home.spec.ts` (title of the home page);
+  a deliberately failing assertion showed auto-retry (5 s timeout, error message, `error-context.md`).
+  Next: **lesson 1** (locators).
