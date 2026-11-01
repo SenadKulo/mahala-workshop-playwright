@@ -29,4 +29,9 @@ The "VAF" column says what is the same or different in VAF (Selenium, .NET).
   Actions, browsers installed); example tests run on 3 projects (2 tests × 3 browsers = 6);
   UI mode and HTML report; first own test `tests/home.spec.ts` (title of the home page);
   a deliberately failing assertion showed auto-retry (5 s timeout, error message, `error-context.md`).
-  Next: **lesson 1** (locators).
+- 2026-11-01: **lesson 1 done.** Locators are lazy and re-resolved on every action; strict mode
+  (the "Katalog" link exists 3 times: nav, "Istraži Katalog", footer) solved by scoping to
+  `getByRole('navigation')`; "Istraži Katalog" looks like a button but is a link; positional
+  XPath and full-sentence `toHaveText` discussed as brittle. Two navigation tests in
+  `tests/home.spec.ts`; `package.json` cleaned up.
+  Next: **lesson 2** (auto-waiting and assertions).
