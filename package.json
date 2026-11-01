@@ -1,0 +1,31 @@
+{
+  "name": "mahala-workshop-playwright",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SenadKulo/mahala-workshop-playwright.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SenadKulo/mahala-workshop-playwright/issues"
+  },
+  "homepage": "https://github.com/SenadKulo/mahala-workshop-playwright#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^26.6.6"
+  },
+  "dependencies": {
+    "playwright": "^1.64.1",
+    "playwright-core": "^1.64.1",
+    "undici-types": "^8.9.0"
+  },
+  "description": ""
+}

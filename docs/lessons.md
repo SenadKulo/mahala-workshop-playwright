@@ -1,28 +1,28 @@
-# Lekcije: Playwright + TypeScript nad Mahala Workshopom
+# Lessons: Playwright + TypeScript on Mahala Workshop
 
-Svaka lekcija: kratko objašnjenje → zadatak → Senad piše i pokreće → pregled.
-Kolona "VAF" kaže šta je u VAF-u (Selenium, .NET) isto ili drugačije.
+Each lesson: short explanation → task → Senad writes and runs it → review.
+The "VAF" column says what is the same or different in VAF (Selenium, .NET).
 
-| # | Tema | Šta nastaje u repou | VAF poređenje |
-|---|------|---------------------|---------------|
-| 0 | Postavka: GitHub repo, `npm init playwright@latest`, šta je šta u projektu, prvi test, pokretanje (CLI, `--ui`, HTML report) | `package.json`, `playwright.config.ts`, prvi test za početnu stranicu | NuGet paket + NUnit projekat; ChromeDriver vs Playwrightovi preglednici |
-| 1 | Lokatori: `getByRole`, `getByText`, `getByLabel`, CSS; lokator je "lijen"; `codegen` | test za navigaciju i katalog | `IElementContext` + `By.Id/CssSelector/XPath` |
-| 2 | Auto-waiting i asercije: `expect(locator)` (čeka) vs `expect(value)` (ne čeka), `expect.soft` | testovi za katalog | `.Should().HaveElement<...>()`, VAF-ovo čekanje i `LetsUseLoader` |
-| 3 | Konfiguracija: `baseURL`, `projects` (local / prod), retries, trace, screenshot, video | config s dva okruženja | `app.config` / `VAF_<ključ>` env varijable |
-| 4 | Debug: trace viewer, `--debug`, UI mode, `page.pause()` | — | VAF HTML log (`ConvertLogToHtml`) |
-| 5 | Page Object Model u TypeScriptu: klase, `Locator` polja, nasljeđivanje (`BasePage`) | `src/pages/` | ugniježđene klase `IPageContext` / `ISectionContext` |
-| 6 | Fixtures (`test.extend`): page objekti i opcije po projektu | `src/fixtures.ts` | `[SetUp]`, `TestBase`, `SharedContext`, `PracticeSteps` |
-| 7 | Parametrizovani testovi: 4 jezika (`bs` bez prefiksa, `en/it/fr`) | testovi lokalizacije | NUnit `[TestCase]` / `[TestCaseSource]` |
-| 8 | Tagovi i sigurnost produkcije: `@local-only`, `grep` / `grepInvert` | pravilo u configu | NUnit `[Category]` |
-| 9 | API testovi bez preglednika (`request`): robots.txt, sitemap, 404, redirect na login | `tests/api/` | VAF nema; u .NET-u bi to bio `HttpClient` |
-| 10 | Mobilni prikaz: `devices`, hamburger meni | projekat `prod-mobile` | `BrowserOptions` / veličina prozora |
-| 11 | Forme: upitni formular, validacija, honeypot (samo lokalno) | `tests/ui/inquiry.spec.ts` | `TextInputActions`, `TextAreaActions`, `SelectBoxActions` |
-| 12 | Autentikacija: admin login jednom, `storageState`, kredencijali iz env varijabli | setup projekat | login kao shared step prije svakog testa |
-| 13 | Mreža: `page.route`, presretanje i mockovanje, 429 rate limit (lokalno) | — | Selenium to ne radi bez proxyja |
-| 14 | CI: GitHub Actions, read-only testovi na produkciji, report kao artefakt | `.github/workflows/` | VAF-Demo GitHub Actions |
-| 15 | Dodatno: accessibility (`@axe-core/playwright`), vizuelno poređenje (`toHaveScreenshot`) | — | — |
+| # | Topic | What it adds to the repo | VAF comparison |
+|---|-------|--------------------------|----------------|
+| 0 | Setup: `npm init playwright@latest`, what each file is for, first test, running it (CLI, `--ui`, HTML report) | `package.json`, `playwright.config.ts`, first test for the home page | NuGet package + NUnit project; ChromeDriver vs Playwright's own browsers |
+| 1 | Locators: `getByRole`, `getByText`, `getByLabel`, CSS; locators are lazy; `codegen` | navigation and catalog tests | `IElementContext` + `By.Id/CssSelector/XPath` |
+| 2 | Auto-waiting and assertions: `expect(locator)` (waits) vs `expect(value)` (does not), `expect.soft` | catalog tests | `.Should().HaveElement<...>()`, VAF waiting and `LetsUseLoader` |
+| 3 | Configuration: `baseURL`, `projects` (local / prod), retries, trace, screenshot, video | config with two environments | `app.config` / `VAF_<key>` environment variables |
+| 4 | Debugging: trace viewer, `--debug`, UI mode, `page.pause()` | — | VAF HTML log (`ConvertLogToHtml`) |
+| 5 | Page Object Model in TypeScript: classes, `Locator` fields, inheritance (`BasePage`) | `src/pages/` | nested `IPageContext` / `ISectionContext` classes |
+| 6 | Fixtures (`test.extend`): page objects and per-project options | `src/fixtures.ts` | `[SetUp]`, `TestBase`, `SharedContext`, `PracticeSteps` |
+| 7 | Parameterized tests: 4 languages (`bs` without prefix, `en/it/fr`) | localization tests | NUnit `[TestCase]` / `[TestCaseSource]` |
+| 8 | Tags and production safety: `@local-only`, `grep` / `grepInvert` | rule in the config | NUnit `[Category]` |
+| 9 | API tests without a browser (`request`): robots.txt, sitemap, 404, redirect to login | `tests/api/` | not in VAF; in .NET this would be `HttpClient` |
+| 10 | Mobile: `devices`, hamburger menu | `prod-mobile` project | `BrowserOptions` / window size |
+| 11 | Forms: inquiry form, validation, honeypot (local only) | `tests/ui/inquiry.spec.ts` | `TextInputActions`, `TextAreaActions`, `SelectBoxActions` |
+| 12 | Authentication: admin login once, `storageState`, credentials from environment variables | setup project | login as a shared step before each test |
+| 13 | Network: `page.route`, interception and mocking, 429 rate limit (local) | — | Selenium cannot do this without a proxy |
+| 14 | CI: GitHub Actions, read-only tests against production, report as an artifact | `.github/workflows/` | VAF-Demo GitHub Actions |
+| 15 | Extras: accessibility (`@axe-core/playwright`), visual comparison (`toHaveScreenshot`) | — | — |
 
-## Stanje
+## Progress
 
-- 2026-11-01: plan napravljen. Lokalni repo ima samo `CLAUDE.md` i ovaj fajl.
-  Sljedeće: **lekcija 0** (GitHub repo je kreirao Senad, zatim `npm init playwright@latest`).
+- 2026-11-01: plan created; GitHub repo created (description, website, topics).
+  Next: **lesson 0** (`npm init playwright@latest`).
