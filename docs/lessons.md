@@ -34,4 +34,13 @@ The "VAF" column says what is the same or different in VAF (Selenium, .NET).
   `getByRole('navigation')`; "Istraži Katalog" looks like a button but is a link; positional
   XPath and full-sentence `toHaveText` discussed as brittle. Two navigation tests in
   `tests/home.spec.ts`; `package.json` cleaned up.
-  Next: **lesson 2** (auto-waiting and assertions).
+- 2026-11-10: **lesson 2 done.** Actionability checks before actions; web-first assertions
+  (retry up to 5 s) vs generic assertions on values (check once); value-returning methods
+  like `allInnerTexts()` do not wait. `tests/catalog.spec.ts`: sort by price ascending
+  (`toHaveURL` as the sync point before reading prices) and the "Prikazano: X od Y" counter
+  (regex, no hard-coded count). Lessons learned the hard way: a test that passed 10/10 without
+  the sync point was only lucky with timing; an empty array passes a sort check (guard with
+  `expect(prices.length).toBeGreaterThan(0)`); `sort()` without a copy compares an array with
+  itself; never put `expect` behind `if`/`&&`; make a test fail on purpose to trust it.
+  Also added `docs/typescript-for-csharp.md`.
+  Next: **lesson 3** (configuration: `baseURL`, projects local/prod).
