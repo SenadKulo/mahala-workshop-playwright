@@ -44,3 +44,14 @@ The "VAF" column says what is the same or different in VAF (Selenium, .NET).
   itself; never put `expect` behind `if`/`&&`; make a test fail on purpose to trust it.
   Also added `docs/typescript-for-csharp.md`.
   Next: **lesson 3** (configuration: `baseURL`, projects local/prod).
+- 2026-11-13: **lesson 3 started (paused).** Explained the problem (hard-coded URLs, no way to
+  run against local) and the VAF analogy (`PracticeSteps.BaseUrl` from `PRACTICE_BASE_URL`,
+  relative paths in `LetsOpen<Page>(...)`). Planned steps:
+  1. `baseURL: 'https://mahalaworkshop.com'` in `use`; relative `goto` (`'/'`, `'/Katalog'`);
+     `toHaveURL` regexes stay as they are. Run `--project=chromium --reporter=list` → 5 passed.
+  2. Replace chromium/firefox/webkit with `prod` and `local` (`http://localhost:5030`) projects;
+     project `use` overrides global `use`; run `--project=local` without and with the app running.
+  3. Local URL from an env variable (`process.env.LOCAL_URL ?? 'http://localhost:5030'`).
+  4. `retries`, `trace`, `screenshot`, `video`, `reporter`, `timeout`; npm scripts
+     `test:prod` / `test:local`.
+  Status: step 1 handed out, **not done yet** (code still has full URLs). Resume at step 1.
